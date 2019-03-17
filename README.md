@@ -25,3 +25,5 @@
 2. 使用vue-resource 的this.$http.get获取数据
 3. 获取到的数据要保存到 data 身上
 4. 使用v-for 循环渲染 每个item 项目 
+
+##改造九宫格 区域的样式 
