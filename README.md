@@ -1,4 +1,5 @@
-# 这是我的第一个项目 基于VUE框架的SPA应用 
+# 这是我的第一个项目 基于VUE框架的SPA应用  对应的是VUE-电商项目spa
+
 ##刚刚学会了git 的使用操作
 1.git add
 2.git commit -m '提交信息'
