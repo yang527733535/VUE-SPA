@@ -9,8 +9,8 @@ import SearchContainer from './components/tabbar/SearchContainer.vue'
 import NewsList from './components/news/NewsList.vue'
 import NewInfo from './components/news/Newinfo.vue'
 import photolist from './components/photos/Photolist.vue'
+import photoinfo from './components/photos/photoinfo.vue'
 
-//3创建路由对象
 var router = new VueRouter({
   routes: [  //配置路由规则
  { path:"/",redirect:'/home'},
@@ -20,7 +20,9 @@ var router = new VueRouter({
  { path:'/search',component:SearchContainer },
  { path:'/home/newslist',component:NewsList},
  { path:'/home/newsinfo/:id',component:NewInfo},
- {path:'/home/Photolist',component:photolist}
+ {path:'/home/Photolist',component:photolist},
+ {path:'/home/photoinfo/:id',component:photoinfo}
+ 
 
  
 
