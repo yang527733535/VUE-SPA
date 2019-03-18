@@ -8,6 +8,18 @@
 
 
      <!-- 缩略图区域 -->
+ <div>
+    <div style=" background-color: pink;"></div>
+    <vue-preview
+      :list="this.list"
+      :thumbImageStyle="{width: '80px', height: '80px', margin: '10px'}"
+      :previewBoxStyle="{border: '1px solid #eee'}"
+      :tapToClose="true"
+      @close="closeHandler"
+      @destroy="destroyHandler"
+    />
+  </div>
+
 
    <!-- 图片内容区域 -->
       <div class="content" v-html="photoinfo.content" > </div>
@@ -28,11 +40,13 @@ export default {
      data(){
          return{
              id: this.$route.params.id,//从路由中获取到的图片id
-             photoinfo:{} //图片详情
+             photoinfo:{},//图片详情
+             list:[]  //缩略图的数组
          }
      },
      created(){
      this.getPhotoinfo()
+     this.getThumbs()
      },
      methods:{
          getPhotoinfo(){
@@ -43,7 +57,28 @@ export default {
                    this.photoinfo =data.body.message[0]
                   }
               })
-         }
+         },
+         getThumbs(){
+             this.$http.get('http://www.liulongbin.top:3005/api/getthumimages/'+this.id)
+             .then(data=>{
+                 console.log(data.body.message)
+                 if(data.body.status===0){
+                     data.body.message.forEach(item=>{
+                         item.w =600 ; //循环每个图片数据补全图片的宽度和高度
+                         item.h =400 ;
+                     });
+                     //把完整的数据保存在list中
+                     this.list = data.body.message
+                 }
+             })
+         },
+        closeHandler() {
+      console.log('closeHandler')
+    },
+    // 完全关闭之后，调用这个函数清理资源
+    destroyHandler() {
+      console.log('destroyHandler')
+    }
      },
      components:{
          //注册评论子组件
