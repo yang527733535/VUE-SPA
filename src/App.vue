@@ -2,7 +2,7 @@
   <div class="app-container" >
 
       <!-- 顶部header区域 -->
-        <mt-header fixed title="1508杨腾辉"></mt-header>
+        <mt-header fixed title="🐱第一个VUE项目😈"></mt-header>
 
       <!-- 中间路由 router-view 区域 -->
 
