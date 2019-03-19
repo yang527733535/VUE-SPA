@@ -10,6 +10,7 @@ import NewsList from './components/news/NewsList.vue'
 import NewInfo from './components/news/Newinfo.vue'
 import photolist from './components/photos/Photolist.vue'
 import photoinfo from './components/photos/photoinfo.vue'
+import goodslist from './components/goods/GoodsList.vue'
 
 var router = new VueRouter({
   routes: [  //配置路由规则
@@ -21,7 +22,8 @@ var router = new VueRouter({
  { path:'/home/newslist',component:NewsList},
  { path:'/home/newsinfo/:id',component:NewInfo},
  {path:'/home/Photolist',component:photolist},
- {path:'/home/photoinfo/:id',component:photoinfo}
+ {path:'/home/photoinfo/:id',component:photoinfo},
+ {path:'/home/goodslist/',component:goodslist}
  
 
  
