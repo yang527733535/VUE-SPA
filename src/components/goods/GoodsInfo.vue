@@ -16,12 +16,12 @@
 
 <!-- 商品购买区域 -->
 	<div class="mui-card">
-				<div class="mui-card-header">{{goodsinfo[0].title}}</div>
+				<div class="mui-card-header">{{goodsinfo.title}}</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
 					     <p class="price">
-                          市场价：￥<del>{{goodsinfo[0].market_price}}</del>&nbsp;&nbsp;销售价：
-                          <span class="now_price">￥{{goodsinfo[0].sell_price}}</span>
+                          市场价：￥<del>{{goodsinfo.market_price}}</del>&nbsp;&nbsp;销售价：
+                          <span class="now_price">￥{{goodsinfo.sell_price}}</span>
                          </p>
                          <p>购买数量: <numbox ></numbox> </p>
                          <p>
@@ -39,9 +39,9 @@
 				<div class="mui-card-header">商品参数</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
-					   <p>商品货号:{{goodsinfo[0].goods_no}}</p>
-                       <p>库存情况:{{goodsinfo[0].stock_quantity}}件</p>
-                       <p>上架时间:{{goodsinfo[0].add_time|dateFormat}}</p>
+					   <p>商品货号:{{goodsinfo.goods_no}}</p>
+                       <p>库存情况:{{goodsinfo.stock_quantity}}件</p>
+                       <p>上架时间:{{goodsinfo.add_time|dateFormat}}</p>
 					</div>
 				</div>
 				<div class="mui-card-footer">
@@ -86,7 +86,7 @@ export default {
                 data.body.message.forEach(i=>{
                     i.img=i.src;
                 })
-                 this.lunbotu =data.body.message[0]
+                 this.lunbotu =data.body.message
             }
         })
         },
@@ -95,7 +95,7 @@ export default {
             this.$http.get('http://www.liulongbin.top:3005/api/goods/getinfo/'+this.id)
             .then(data=>{
                 if(data.body.status===0){
-                    this.goodsinfo =data.body.message
+                    this.goodsinfo =data.body.message[0]
                 }
             })
         }
