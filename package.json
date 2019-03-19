@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "element-ui": "^2.6.1",
     "mint-ui": "^2.2.9",
     "moment": "^2.24.0",
     "vue": "^2.5.2",

@@ -23,7 +23,7 @@
                           市场价：￥<del>2399</del>&nbsp;&nbsp;销售价：
                           <span class="now_price">￥2199</span>
                          </p>
-                         <p>购买数量:</p>
+                         <p>购买数量: <numbox ></numbox> </p>
                          <p>
                     <mt-button size="small" type="primary">立即购买</mt-button>
                     <mt-button size="small" type="danger">加入购物车</mt-button>
@@ -50,8 +50,9 @@
 </template>
 
 <script>
-import swiper from '../subcomponents/swiper.vue'
 
+import swiper from '../subcomponents/swiper.vue'
+import numbox from '../subcomponents/goodsinfo_numberbox.vue'
 export default {
     data(){
         return {
@@ -64,7 +65,8 @@ export default {
         this.getlunbotu()
     },
     components:{
-     swiper
+     swiper,
+     numbox
     },
     methods:{
         getlunbotu(){

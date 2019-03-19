@@ -30,7 +30,7 @@
 </template>
 
 <script>
- import { Toast} from 'mint-ui'
+ import {Toast} from 'mint-ui'
  import swiper from '../subcomponents/swiper.vue';
 
  export default {

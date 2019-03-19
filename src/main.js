@@ -33,6 +33,10 @@ import MintUI from 'mint-ui'
 Vue.use(MintUI)
 import 'mint-ui/lib/style.css'
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
  //这是安装图片预览插件
 import VuePreview from 'vue2-preview'
 Vue.use(VuePreview)
