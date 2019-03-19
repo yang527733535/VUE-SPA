@@ -46,9 +46,9 @@
 				</div>
 				<div class="mui-card-footer">
                     <div> 
-       <mt-button plain  type="primary" size="large">图文介绍</mt-button></div>
+       <mt-button plain  type="primary" size="large" @click="go1(id)" >图文介绍</mt-button></div>
         
-       <mt-button plian type="danger" size="large">商品评论</mt-button>
+       <mt-button plian type="danger" size="large" @click="go2(id)">商品评论</mt-button>
                 </div>
 			</div>
 
@@ -98,6 +98,12 @@ export default {
                     this.goodsinfo =data.body.message[0]
                 }
             })
+        },
+        go1(id){
+           this.$router.push({name:'jieshao',params:{id}})
+        },
+        go2(id){
+         this.$router.push({name:'pinglun',params:{id}})
         }
     }
 }

@@ -12,6 +12,8 @@ import photolist from './components/photos/Photolist.vue'
 import photoinfo from './components/photos/photoinfo.vue'
 import goodslist from './components/goods/GoodsList.vue'
 import Goodsinfo from './components/goods/GoodsInfo.vue'
+import GoodsDesc from './components/goods/GoodsDesc.vue'
+import Goodcomment from './components/goods/Goodscomment.vue'
 
 var router = new VueRouter({
   routes: [  //配置路由规则
@@ -25,7 +27,9 @@ var router = new VueRouter({
  {path:'/home/Photolist',component:photolist},
  {path:'/home/photoinfo/:id',component:photoinfo},
  {path:'/home/goodslist/',component:goodslist},
- {path:'/home/goodsinfo/:id',component: Goodsinfo}
+ {path:'/home/goodsinfo/:id',component: Goodsinfo},
+ {path:'/home/goodsdesc/:id',component:GoodsDesc,name:'jieshao'},
+ {path:'/home/goodscomment/:id',component:Goodcomment,name:'pinglun'},
  
 
  
