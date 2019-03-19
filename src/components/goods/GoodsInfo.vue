@@ -16,12 +16,12 @@
 
 <!-- 商品购买区域 -->
 	<div class="mui-card">
-				<div class="mui-card-header">商品的名称标题</div>
+				<div class="mui-card-header">{{goodsinfo[0].title}}</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
 					     <p class="price">
-                          市场价：￥<del>2399</del>&nbsp;&nbsp;销售价：
-                          <span class="now_price">￥2199</span>
+                          市场价：￥<del>{{goodsinfo[0].market_price}}</del>&nbsp;&nbsp;销售价：
+                          <span class="now_price">￥{{goodsinfo[0].sell_price}}</span>
                          </p>
                          <p>购买数量: <numbox ></numbox> </p>
                          <p>
@@ -36,13 +36,20 @@
 
 
             	<div class="mui-card">
-				<div class="mui-card-header">页眉</div>
+				<div class="mui-card-header">商品参数</div>
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
-						包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+					   <p>商品货号:{{goodsinfo[0].goods_no}}</p>
+                       <p>库存情况:{{goodsinfo[0].stock_quantity}}件</p>
+                       <p>上架时间:{{goodsinfo[0].add_time|dateFormat}}</p>
 					</div>
 				</div>
-				<div class="mui-card-footer">页脚</div>
+				<div class="mui-card-footer">
+                    <div> 
+       <mt-button plain  type="primary" size="large">图文介绍</mt-button></div>
+        
+       <mt-button plian type="danger" size="large">商品评论</mt-button>
+                </div>
 			</div>
 
 
@@ -58,11 +65,13 @@ export default {
         return {
             //将路由参数对象中的id挂载到data上，方便后期调用
             id:this.$route.params.id,
-            lunbotu:[] //轮播图的数据
+            lunbotu:[] ,//轮播图的数据
+            goodsinfo:{}
         }
     },
     created(){
-        this.getlunbotu()
+        this.getlunbotu();
+       this.getGoodsInfo();
     },
     components:{
      swiper,
@@ -77,9 +86,18 @@ export default {
                 data.body.message.forEach(i=>{
                     i.img=i.src;
                 })
-                 this.lunbotu =data.body.message
+                 this.lunbotu =data.body.message[0]
             }
         })
+        },
+        getGoodsInfo(){
+             //获取商品的信息
+            this.$http.get('http://www.liulongbin.top:3005/api/goods/getinfo/'+this.id)
+            .then(data=>{
+                if(data.body.status===0){
+                    this.goodsinfo =data.body.message
+                }
+            })
         }
     }
 }
@@ -93,5 +111,11 @@ export default {
       color: red;
       font-size: 16px;
       font-weight: bold;
+      }
+      .mui-card-footer{
+          display: block;
+          button{
+               margin: 15px 0;
+          }
       }
 </style>
