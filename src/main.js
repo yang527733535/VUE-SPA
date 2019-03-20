@@ -85,6 +85,19 @@ var store = new Vuex.Store({
   },
   getters:{    //this.$store.getters.xxx
     //相当于计算属性，也相当于过滤器 
+    getGoodsCountAndAmount(state){
+    var o={
+      count:0,  //勾选的数量
+      amount:0   //勾选的总价
+    }
+       state.car.forEach(item=>{
+         if(item.selected){
+           o.count = o.count+item.count
+           o.amount =o.amount + item.price*item.count
+         }
+       })
+       return o
+    },
     getAllcount(state){
       var c=0 ;
       state.car.forEach(item=>{

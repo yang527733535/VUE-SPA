@@ -2,7 +2,12 @@
   <div class="app-container" >
 
       <!-- 顶部header区域 -->
-        <mt-header fixed title="🐱第一个VUE项目😈"></mt-header>
+        <mt-header fixed title="🐱第一个VUE项目😈">
+<span  v-show="flag" @click="goBack" slot="left">
+    <mt-button icon="back">返回</mt-button>
+  </span> 
+
+				</mt-header>
 
       <!-- 中间路由 router-view 区域 -->
 
@@ -36,7 +41,36 @@
 </template>
 
 <script>
-
+ export default{
+	 data(){
+		 return {
+			 flag:false
+		 }
+	 },
+	 methods:{
+		 goBack(){
+				//点击后退
+				this.$router.go(-1)
+		 },
+		 
+	 },
+	 created(){
+		 if(this.$route.path==='/home'){
+			 this.flag=false
+		 }else{
+			  this.flag=true;
+		 }
+	 },
+	 watch:{
+		 '$route.path':function(newVal){
+  if(newVal==='/home'){
+     this.flag =false;
+	}else{
+		  this.flag =true;
+	}
+		 }
+	 }
+ }
 
 </script>
  
