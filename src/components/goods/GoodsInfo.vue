@@ -93,9 +93,10 @@ export default {
      numbox
     },
     methods:{
-        getlunbotu(){
-  this.$http.get('http://www.liulongbin.top:3005/api/getthumimages/'+this.id)
-        .then(data=>{
+      
+      getlunbotu(){
+            this.$http.get('http://www.liulongbin.top:3005/api/getthumimages/'+this.id)
+            .then(data=>{
              
             if(data.body.status ===0){
                 data.body.message.forEach(i=>{
@@ -122,7 +123,17 @@ export default {
         },
         addToshopcar(){
             //添加到购物车
-            this.ballflag= ! this.ballflag
+            this.ballflag= ! this.ballflag;
+// { id:商品的id，count:购买数量,price:商品价格,selecetd:false }
+            //拼接处一个到保存在store中car数组里的商品信息对象
+            var goodsinfo={id:this.id,
+              count:this.selecedCount,
+              price:this.goodsinfo.sell_price,
+              selected:true
+                          };
+         //调用store中的mutations来将商品加入购物车
+          this.$store.commit('addToCar',goodsinfo);
+            
         },
         beforeEnter(el){
             el.style.transform="translate(0,0)";
