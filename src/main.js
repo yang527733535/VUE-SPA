@@ -21,6 +21,30 @@ var store = new Vuex.Store({
     // { id:商品的id，count:购买数量,price:商品价格,selecetd:false }
   },
   mutations:{  //this.$store.commit('methodName','参数1')
+   
+  updateGoodsSelected(state,info){
+    state.car.some(item=>{
+      if(item.id==info.id){
+        console.log(info.id)
+        console.log(info.selected)
+        item.selected=info.selected
+      }
+    })
+    //把最新的所有购物车状态保存在store中 
+    localStorage.setItem('car', JSON.stringify(state.car))
+  },
+  removefromCar(state,id){
+  //根据id，从store中的购物车中删除对应的那条商品数据
+   state.car.some((item,i)=>{
+     if(item.id==id){
+        state.car.splice(i,1)
+        return true;
+     }
+   })
+   //将删除完毕后的最新的购物车数据同步在本地存储中
+   localStorage.setItem('car', JSON.stringify(state.car))
+
+  },
   updateGoodsInfo(state, goodsinfo) {
     // 修改购物车中商品的数量值
     // 分析： 
@@ -73,6 +97,13 @@ var store = new Vuex.Store({
       var o={}
       state.car.forEach(item=>{
         o[item.id]=item.count
+      })
+      return o
+    },
+    getGoodSelected(state){
+      var o={}
+      state.car.forEach(item=>{
+        o[item.id] =item.selected;
       })
       return o
     }
