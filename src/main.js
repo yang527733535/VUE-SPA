@@ -21,6 +21,18 @@ var store = new Vuex.Store({
     // { id:商品的id，count:购买数量,price:商品价格,selecetd:false }
   },
   mutations:{  //this.$store.commit('methodName','参数1')
+  updateGoodsInfo(state, goodsinfo) {
+    // 修改购物车中商品的数量值
+    // 分析： 
+    state.car.some(item => {
+      if (item.id == goodsinfo.id) {
+        item.count = parseInt(goodsinfo.count)
+        return true
+      }
+    })
+    // 当修改完商品的数量，把最新的购物车数据，保存到 本地存储中
+    localStorage.setItem('car', JSON.stringify(state.car))
+  },
      addToCar(state,goodsinfo){
          //点击加入购物车，把商品信息，保存到store中的car上
          //分析：1如果购物车中之前就已经有这个对应的商品，只要更新数量
@@ -56,6 +68,13 @@ var store = new Vuex.Store({
       })
        return c;
       
+    },
+    getGoodsCount(state){
+      var o={}
+      state.car.forEach(item=>{
+        o[item.id]=item.count
+      })
+      return o
     }
   }
 })
