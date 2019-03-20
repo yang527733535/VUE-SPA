@@ -10,7 +10,6 @@
     },
     props:["max"],
        
-   
     methods: {
       handleChange(value) {
          this.$emit('getconut',value)

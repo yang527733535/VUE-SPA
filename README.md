@@ -126,5 +126,21 @@ concat方法，拼接上新数组
  2. 要保证手机和电脑处以同一个WIFI中
  3. 打开自己的 项目中 package.json 文件 在 dev 脚本中，添加一个 -- host 指令，把当前
  电脑的主机WIFI IP地址为 --host的指令值
- + 怎么查看自己电脑所处WIFI的ID呢 在终端上运行 ipconfig, 查看无线网的IP地址
+ + 怎么查看自己电脑所处WIFI的ID呢 在终端上运行 ifconfig, 查看无线网的IP地址
  
+
+ ##VUEX的使用
+
+  1. 运行 cnpm i vuex -S
+  2. 在main.js导入包
+  3. 注册vuex在vue中
+  4. new Vuex.Store(这个实例里面有两个配置属性 ，一个存数据，一个存方法)
+  5. 如果在组件中想要访问全局的公共数据，只能通过this.$store.state.commment_name
+
+  ###总结
+  1. state中的数据.不能直接修改，必须通过mutations
+  2. 如果组件想要直接从state中获取数据，需要this.$store.state.xxx
+  3. 如果组件想要修改数据，必须使用mutations提供的方法，防止公共数据的紊乱，要查的时候好查，
+  通过this.$store.commit(方法的名称,参数1,[参数2])
+  4. 如果store中的state上的数据，在对外提供的时候，需要包装，那么，推荐使用getters，如果需要
+  使用getters，则用this.$store.getters.xxx
